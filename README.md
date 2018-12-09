@@ -1,2 +1,2 @@
 # Calculator
-계싼기
+c샾 계산기

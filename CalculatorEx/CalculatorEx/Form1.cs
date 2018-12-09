@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CalculatorEx
 {
-    public enum Operators { Add,Sub} //열거형 
+    public enum Operators { Add,Sub,Multi,Div} //열거형 
 
     public partial class Form1 : Form
     {
@@ -40,6 +40,19 @@ namespace CalculatorEx
             int sub = number1 - number2;
             return sub;
         }
+
+        public int Multi(int number1,int number2)
+        {
+            int multi = number1 * number2;
+            return multi;
+        }
+
+        public double Div(double number1, double number2)
+        {
+            double div = number1 / number2;
+            return div;
+        }
+       
 
         private void NumButton1_Click(object sender, EventArgs e)
         {
@@ -72,10 +85,14 @@ namespace CalculatorEx
 
             
             int num = int.Parse(NumScreen.Text); // NumScreen텍스트 스트링 형태라 인트형태로 파싱
-            if (Opt == Operators.Add)
-                Result = Result + num;  // 리절트 경우 맨위 전역변수로 0 으로 셋팅 해놨음 
-            else if (Opt == Operators.Sub)
-                Result = Result - num;
+                if (Opt == Operators.Add)
+                    Result = Result + num;  // 리절트 경우 맨위 전역변수로 0 으로 셋팅 해놨음 
+                else if (Opt == Operators.Sub)
+                    Result = Result - num;
+                else if (Opt == Operators.Multi)
+                    Result = Result * num;
+                else if (Opt == Operators.Div)
+                    Result = Result / num;
 
             NumScreen.Text = Result.ToString(); // NumScreen 경우 스트링 형태니깐  리절트 인트형태니깐
                                                 // 다시 스크린에 표시해줄려면 스트링 형태로 바꿔줘야지
@@ -88,6 +105,10 @@ namespace CalculatorEx
                 Opt = Operators.Add;
             else if (optButton.Text == "-")
                 Opt = Operators.Sub;
+            else if (optButton.Text == "x")
+                Opt = Operators.Multi;
+            else if (optButton.Text == "/")
+                Opt = Operators.Div;
         }
 
         // 리셋버튼
